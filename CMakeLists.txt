@@ -33,7 +33,7 @@ ENDIF()
 
 #if you don't want the full compiler output, remove the following line
 SET(CMAKE_VERBOSE_MAKEFILE OFF)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
 
 IF(NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE Release CACHE STRING
@@ -90,7 +90,7 @@ SET (MANDATORY_FLAGS "-D_REENTRANT -D_POSIX_PTHREAD_SEMANTICS")
 
 # -pedantic requires -Wno-long-long
 #
-SET (ALWAYS_FLAGS "-std=c++11 -Wall -Wextra -Woverloaded-virtual -fno-strict-aliasing -Wpointer-arith -Wwrite-strings -pthread")
+SET (ALWAYS_FLAGS "-std=c++11 -Wall -Wextra -Woverloaded-virtual -frtti -fno-strict-aliasing -Wpointer-arith -Wwrite-strings -pthread")
 # NO_INLINE_FLAGS =  -fno-inline
 SET (NO_INLINE_FLAGS "")
 SET (YES_INLINE_FLAGS "-finline-functions")
@@ -221,12 +221,12 @@ INCLUDE (TestBigEndian)
 TEST_BIG_ENDIAN(WORDS_BIGENDIAN)
 
 # then finally call CONFIGURE_FILE to generate shore-config-env.h
-CONFIGURE_FILE( ${CMAKE_SOURCE_DIR}/config/shore-config-env.h.cmake ${CMAKE_BINARY_DIR}/config/shore-config-env.h )
+CONFIGURE_FILE( ${CMAKE_CURRENT_SOURCE_DIR}/config/shore-config-env.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config/shore-config-env.h )
 
 add_subdirectory(src) # main source codes
 add_subdirectory(config) # to be eliminated
 add_subdirectory(gtest-1.7.0) # google-test library
-add_subdirectory(tests) # unit testcases
+#add_subdirectory(tests) # unit testcases
 # not needed so far, and causes a warning
 # add_library(shore)
 # target_link_libraries(shore fc sthread common sm)
@@ -247,12 +247,12 @@ endif(DOXYGEN_FOUND)
 add_custom_target(lint
     # ALL # Enable this line if we want to enforce lint for every compilation.. not so far.
     COMMAND python
-        ${CMAKE_SOURCE_DIR}/tools/cpplint.py
+        ${CMAKE_CURRENT_SOURCE_DIR}/tools/cpplint.py
         --linelength=95
         --extensions=c,cpp,h,hpp,txt
-        --root=${CMAKE_SOURCE_DIR}/src
+        --root=${CMAKE_CURRENT_SOURCE_DIR}/src
         --filter=-,+whitespace/line_length,+whitespace/tab # So far minimal rules only
-        ${CMAKE_SOURCE_DIR}/src/*.h
-        ${CMAKE_SOURCE_DIR}/src/common/*
-        ${CMAKE_SOURCE_DIR}/src/sm/*
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/common/*
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/sm/*
 )

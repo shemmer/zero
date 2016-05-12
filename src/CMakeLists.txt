@@ -7,17 +7,17 @@ macro(INSTALL_GENERATED_H)
 endmacro(INSTALL_GENERATED_H)
 
 INCLUDE_DIRECTORIES (
-  ${CMAKE_SOURCE_DIR}/config
-  ${CMAKE_SOURCE_DIR}/src/common
-  ${CMAKE_SOURCE_DIR}/src/sm
-  ${CMAKE_SOURCE_DIR}/src/cmd
+  ${CMAKE_CURRENT_SOURCE_DIR}/../config
+  ${CMAKE_CURRENT_SOURCE_DIR}/../src/common
+  ${CMAKE_CURRENT_SOURCE_DIR}/../src/sm
+  ${CMAKE_CURRENT_SOURCE_DIR}/../src/cmd
 )
 # to look for generated headers
 INCLUDE_DIRECTORIES (
-  ${CMAKE_BINARY_DIR}/config
-  ${CMAKE_BINARY_DIR}/src/common
-  ${CMAKE_BINARY_DIR}/src/sm
-  ${CMAKE_BINARY_DIR}/src/cmd
+  ${CMAKE_CURRENT_BINARY_DIR}/../config
+  ${CMAKE_CURRENT_BINARY_DIR}/../src/common
+  ${CMAKE_CURRENT_BINARY_DIR}/../src/sm
+  ${CMAKE_CURRENT_BINARY_DIR}/../src/cmd
 )
 
 add_subdirectory(common)

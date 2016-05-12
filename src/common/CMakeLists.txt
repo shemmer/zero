@@ -40,7 +40,7 @@ set(COMMON_GENFILES_CPP sthread_stats_collect_gen.cpp sthread_stats_dec_gen.cpp 
 set(COMMON_GENFILES_FILES ${COMMON_GENFILES_H} ${COMMON_GENFILES_CPP})
 foreach(_file ${COMMON_GENFILES_FILES})
     add_custom_command(OUTPUT ${_file}
-       COMMAND perl ${CMAKE_SOURCE_DIR}/tools/stats.pl ${CMAKE_CURRENT_SOURCE_DIR}/sthread_stats.dat
+       COMMAND perl ${CMAKE_CURRENT_SOURCE_DIR}/../../tools/stats.pl ${CMAKE_CURRENT_SOURCE_DIR}/sthread_stats.dat
        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/sthread_stats.dat
     )
     set(COMMON_GENFILES_FILES_B ${COMMON_GENFILES_FILES_B} ${CMAKE_CURRENT_BINARY_DIR}/${_file})

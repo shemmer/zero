@@ -116,7 +116,7 @@ set(SM_STATS_GENFILES_CPP sm_stats_t_collect_gen.cpp sm_stats_t_dec_gen.cpp sm_s
 set(SM_STATS_GENFILES_FILES ${SM_STATS_GENFILES_H} ${SM_STATS_GENFILES_CPP})
 foreach(_file ${SM_STATS_GENFILES_FILES})
     add_custom_command(OUTPUT ${_file}
-        COMMAND perl ${CMAKE_SOURCE_DIR}/tools/stats.pl ${CMAKE_CURRENT_SOURCE_DIR}/sm_stats.dat
+      COMMAND perl ${CMAKE_CURRENT_SOURCE_DIR}/../../tools/stats.pl ${CMAKE_CURRENT_SOURCE_DIR}/sm_stats.dat
         DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/sm_stats.dat
     )
     set(SM_STATS_GENFILES_B_H ${SM_STATS_GENFILES_B_H} ${CMAKE_CURRENT_BINARY_DIR}/${_file})
@@ -130,7 +130,7 @@ set(BF_HTAB_STATS_GENFILES_CPP bf_htab_stats_t_collect_gen.cpp bf_htab_stats_t_d
 set(BF_HTAB_STATS_GENFILES_FILES ${BF_HTAB_STATS_GENFILES_H} ${BF_HTAB_STATS_GENFILES_CPP})
 foreach(_file ${BF_HTAB_STATS_GENFILES_FILES})
     add_custom_command(OUTPUT ${_file}
-        COMMAND perl ${CMAKE_SOURCE_DIR}/tools/stats.pl ${CMAKE_CURRENT_SOURCE_DIR}/bf_htab_stats.dat
+       COMMAND perl ${CMAKE_CURRENT_SOURCE_DIR}/../../tools/stats.pl ${CMAKE_CURRENT_SOURCE_DIR}/bf_htab_stats.dat
         DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/bf_htab_stats.dat
     )
     set (BF_HTAB_STATS_GENFILES_B_H ${BF_HTAB_STATS_GENFILES_B_H} ${CMAKE_CURRENT_BINARY_DIR}/${_file})
@@ -144,7 +144,7 @@ set(LOGDEF_GENFILES_CPP undo_gen.cpp redo_gen.cpp logdef_gen.cpp logstr_gen.cpp 
 set(LOGDEF_GENFILES_FILES ${LOGDEF_GENFILES_H} ${LOGDEF_GENFILES_CPP})
 foreach(_file ${LOGDEF_GENFILES_FILES})
     add_custom_command(OUTPUT ${_file}
-        COMMAND perl ${CMAKE_SOURCE_DIR}/tools/logdef.pl ${CMAKE_CURRENT_SOURCE_DIR}/logdef.dat
+      COMMAND perl ${CMAKE_CURRENT_SOURCE_DIR}/../../tools/logdef.pl ${CMAKE_CURRENT_SOURCE_DIR}/logdef.dat
         DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/logdef.dat
     )
     set (LOGDEF_GENFILES_B_H ${LOGDEF_GENFILES_B_H} ${CMAKE_CURRENT_BINARY_DIR}/${_file})

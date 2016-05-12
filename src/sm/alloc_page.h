@@ -64,7 +64,7 @@ public:
     void unset_bit(uint32_t index) { bitmap[byte_place(index)] &= ~bit_mask(index); }
     void set_bit(uint32_t index) { bitmap[byte_place(index)] |=  bit_mask(index); }
 
-    void set_bits(uint32_t from, uint32_t to);
+    void alloc_set_bits(uint32_t from, uint32_t to);
     void reset_all();
 };
 BOOST_STATIC_ASSERT(sizeof(alloc_page) == generic_page_header::page_sz);

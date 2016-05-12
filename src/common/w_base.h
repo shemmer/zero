@@ -498,9 +498,9 @@ template<> struct CompileTimeAssertion<true> { void reference() {} };
  *   though it's known yet fully supported (not safe).
  *
  */
-template<typename T> struct compile_time_assert 
+template<typename T> struct zero_compile_time_assert 
 {
-    compile_time_assert() {
+    zero_compile_time_assert() {
         CompileTimeAssertion<sizeof(long) == 8> assert_8byte_long;
         CompileTimeAssertion<sizeof(long) >= sizeof(T)> assert_long_holds_T;
     }

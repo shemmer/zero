@@ -9,7 +9,7 @@ void alloc_page::reset_all()
     memset(&bitmap, 0, bitmapsize);
 }
 
-void alloc_page::set_bits(uint32_t from, uint32_t to)
+void alloc_page::alloc_set_bits(uint32_t from, uint32_t to)
 {
     // We need to do bit-wise operations only for first and last
     // bytes.  Other bytes are all "FF".

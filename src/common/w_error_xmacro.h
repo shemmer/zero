@@ -129,3 +129,9 @@ X(se_ERROR_IN_LOAD            , "se_ERROR_IN_LOAD")
 X(se_ERROR_IN_IDX_LOAD        , "se_ERROR_IN_IDX_LOAD")
 X(se_WRONG_DISK_DATA          , "se_WRONG_DISK_DATA")
 X(se_INVALID_INPUT            , "se_INVALID_INPUT")
+
+/* Relational errors
+ *
+ */
+
+X(rel_FK_CONSTRAINT_VIOLATED,  "Violated foreign key constraint")

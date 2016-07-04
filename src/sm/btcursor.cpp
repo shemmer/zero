@@ -296,6 +296,50 @@ rc_t bt_cursor_t::next()
     return RCOK;
 }
 
+
+rc_t bt_cursor_t::previous()
+{
+    _forward=false;
+    if (!is_valid()) {
+        return RCOK; // EOF
+    }
+
+    if (_first_time) {
+        _first_time = false;
+        W_DO(_locate_first ());
+        if (_eof) {
+            return RCOK;
+        }
+    }
+
+    w_assert3(_pid);
+    btree_page_h p;
+    W_DO(_refix_current_key(p));
+    w_assert3(p.is_fixed());
+    w_assert3(p.pid() == _pid);
+
+    W_DO(_check_page_update(p));
+
+    // Move one slot to the right(left if backward scan)
+    bool eof_ret = false;
+    W_DO(_find_next(p, eof_ret));
+
+    if (eof_ret) {
+        close();
+        return RCOK;
+    }
+
+    w_assert3(p.is_fixed());
+    w_assert3(p.is_leaf());
+
+    w_assert3(_slot >= 0);
+    w_assert3(_slot < p.nrecs());
+
+    // get the current slot's values
+    W_DO( _make_rec(p) );
+    return RCOK;
+}
+
 rc_t bt_cursor_t::_find_next(btree_page_h &p, bool &eof)
 {
     while (true) {

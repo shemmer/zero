@@ -110,6 +110,10 @@ public:
      * Moves the BTree cursor to next slot.
      */
     rc_t next();
+    /**
+    * Moves the BTree cursor to previous slot.
+    */
+    rc_t previous();
 
     bool          is_valid() const { return _first_time || !_eof; }
     bool          is_forward() const { return _forward; }
@@ -125,6 +129,10 @@ public:
     int               elen() const     { return _elen; }
     char*             elem()     { return _eof ? 0 :  _elbuf; }
 
+
+
+    w_keystr_t  _lower;
+    w_keystr_t  _upper;
 private:
     void        _init(
         StoreID store,
@@ -168,8 +176,6 @@ private:
     rc_t         _make_rec(const btree_page_h& page);
 
     StoreID      _store;
-    w_keystr_t  _lower;
-    w_keystr_t  _upper;
     bool        _lower_inclusive;
     bool        _upper_inclusive;
     bool        _forward;
